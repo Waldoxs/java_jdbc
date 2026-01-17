@@ -55,7 +55,7 @@ public class ProductoRespositorioImp implements Respositorio<Producto> {
     public void guardar(Producto producto) {
         String sql;
         if (producto.getId() != null && producto.getId() > 0) {
-            sql = "UPDATE productos SET nombre=?, precio=?, WHERE id=?";
+            sql = "UPDATE productos SET nombre=?, precio=? WHERE id=?";
         } else {
             sql = "INSERT INTO productos(nombre, precio, fecha_registro) VALUES(?,?,?)";
         }
@@ -68,8 +68,7 @@ public class ProductoRespositorioImp implements Respositorio<Producto> {
                 stmt.setLong(3, producto.getId());
 
             } else {
-                stmt.setDate(3, (Date) producto.getFechaRegistro());
-                // new Date(producto.getFechaRegistro().getTime())
+                stmt.setDate(3,  new Date(producto.getFechaRegistro().getTime()));
             }
             stmt.executeUpdate();
 

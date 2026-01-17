@@ -4,10 +4,11 @@ import org.osantos.java.jdbc.modelo.Producto;
 import org.osantos.java.jdbc.repositorio.ProductoRespositorioImp;
 import org.osantos.java.jdbc.repositorio.Respositorio;
 import org.osantos.java.jdbc.util.ConexionBaseDatos;
-import java.sql.*;
-import java.util.Date;
 
-public class EjemploJdbc {
+import java.sql.Connection;
+import java.sql.SQLException;
+
+public class EjemploJdbcDelete {
     public static void main(String[] args) {
 
         try (Connection conn = ConexionBaseDatos.getIntance()) {
@@ -19,14 +20,9 @@ public class EjemploJdbc {
             System.out.println("============= [Obtener por id] =============");
             System.out.println(repositorio.porId(1L));
 
-            System.out.println("============= [Insertar nuevo producto] =============");
-            Producto producto = new Producto();
-            producto.setNombre("Teclado mecánico");
-            producto.setPrecio(500);
-            producto.setFechaRegistro(new Date());
-
-            repositorio.guardar(producto);
-            System.out.println("Producto guardado con éxito");
+            System.out.println("============= [Eliminar producto] =============");
+            repositorio.eliminar(4L);
+            System.out.println("Producto eliminado con éxito");
 
             repositorio.listar().forEach(System.out::println);
 

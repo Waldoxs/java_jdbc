@@ -4,10 +4,12 @@ import org.osantos.java.jdbc.modelo.Producto;
 import org.osantos.java.jdbc.repositorio.ProductoRespositorioImp;
 import org.osantos.java.jdbc.repositorio.Respositorio;
 import org.osantos.java.jdbc.util.ConexionBaseDatos;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Date;
 
-public class EjemploJdbc {
+public class EjemploJdbcUpdate {
     public static void main(String[] args) {
 
         try (Connection conn = ConexionBaseDatos.getIntance()) {
@@ -19,14 +21,16 @@ public class EjemploJdbc {
             System.out.println("============= [Obtener por id] =============");
             System.out.println(repositorio.porId(1L));
 
-            System.out.println("============= [Insertar nuevo producto] =============");
+            System.out.println("============= [Editar producto] =============");
             Producto producto = new Producto();
-            producto.setNombre("Teclado mecánico");
-            producto.setPrecio(500);
-            producto.setFechaRegistro(new Date());
+
+            producto.setId(8L);
+
+            producto.setNombre("Teclado Logitech mecánico");
+            producto.setPrecio(1200);
 
             repositorio.guardar(producto);
-            System.out.println("Producto guardado con éxito");
+            System.out.println("Producto editado con éxito");
 
             repositorio.listar().forEach(System.out::println);
 
