@@ -11,7 +11,6 @@ import java.sql.*;
 public class EjemploJdbc {
     public static void main(String[] args) {
 
-
         try (Connection conn = ConexionBaseDatos.getIntance()) {
 
             Respositorio<Producto> repositorio = new ProductoRespositorioImp();
