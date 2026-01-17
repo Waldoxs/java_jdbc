@@ -1,23 +1,21 @@
 package org.osantos.java.jdbc;
 
+import org.osantos.java.jdbc.modelo.Producto;
+import org.osantos.java.jdbc.repositorio.ProductoRespositorioImp;
+import org.osantos.java.jdbc.repositorio.Respositorio;
 import org.osantos.java.jdbc.util.ConexionBaseDatos;
 
+import javax.management.loading.ClassLoaderRepository;
 import java.sql.*;
 
 public class EjemploJdbc {
     public static void main(String[] args) {
 
 
-        try (Connection conn = ConexionBaseDatos.getIntance();
-             Statement stmt = conn.createStatement();
-             ResultSet resultado = stmt.executeQuery("SELECT * FROM productos")) {
+        try (Connection conn = ConexionBaseDatos.getIntance()) {
 
-            while (resultado.next()) {
-                System.out.print(resultado.getInt("id") + " | ");
-                System.out.print(resultado.getString("nombre") + " | ");
-                System.out.print(resultado.getInt("precio") + " | ");
-                System.out.println(resultado.getDate("fecha_registro"));
-            }
+            Respositorio<Producto> repositorio = new ProductoRespositorioImp();
+            repositorio.listar().forEach(p -> System.out.println(p.getNombre()));
 
         } catch (SQLException e) {
             e.printStackTrace();
