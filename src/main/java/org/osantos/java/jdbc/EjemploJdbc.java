@@ -4,8 +4,6 @@ import org.osantos.java.jdbc.modelo.Producto;
 import org.osantos.java.jdbc.repositorio.ProductoRespositorioImp;
 import org.osantos.java.jdbc.repositorio.Respositorio;
 import org.osantos.java.jdbc.util.ConexionBaseDatos;
-
-import javax.management.loading.ClassLoaderRepository;
 import java.sql.*;
 
 public class EjemploJdbc {
@@ -14,7 +12,9 @@ public class EjemploJdbc {
         try (Connection conn = ConexionBaseDatos.getIntance()) {
 
             Respositorio<Producto> repositorio = new ProductoRespositorioImp();
-            repositorio.listar().forEach(p -> System.out.println(p.getNombre()));
+            repositorio.listar().forEach(System.out::println);
+
+            System.out.println(repositorio.porId(2L));
 
         } catch (SQLException e) {
             e.printStackTrace();
