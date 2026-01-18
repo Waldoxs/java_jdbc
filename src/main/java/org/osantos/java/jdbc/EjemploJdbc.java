@@ -1,5 +1,6 @@
 package org.osantos.java.jdbc;
 
+import org.osantos.java.jdbc.modelo.Categoria;
 import org.osantos.java.jdbc.modelo.Producto;
 import org.osantos.java.jdbc.repositorio.ProductoRespositorioImp;
 import org.osantos.java.jdbc.repositorio.Respositorio;
@@ -21,9 +22,12 @@ public class EjemploJdbc {
 
             System.out.println("============= [Insertar nuevo producto] =============");
             Producto producto = new Producto();
-            producto.setNombre("Teclado mecánico");
-            producto.setPrecio(500);
+            producto.setNombre("Teclado Red Dragón mecánico");
+            producto.setPrecio(450);
             producto.setFechaRegistro(new Date());
+            Categoria categoria = new Categoria();
+            categoria.setId(3L);
+            producto.setCategoria(categoria);
 
             repositorio.guardar(producto);
             System.out.println("Producto guardado con éxito");

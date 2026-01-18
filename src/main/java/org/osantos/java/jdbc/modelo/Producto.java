@@ -7,14 +7,7 @@ public class Producto {
     private String nombre;
     private Integer precio;
     private Date fechaRegistro;
-
-    @Override
-    public String toString() {
-        return id +
-                " | " + nombre +
-                " | " + precio +
-                " | " + fechaRegistro;
-    }
+    private Categoria categoria;
 
     public Producto() {
     }
@@ -54,7 +47,24 @@ public class Producto {
         return precio;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public void setPrecio(Integer precio) {
         this.precio = precio;
+    }
+
+    @Override
+    public String toString() {
+        return id +
+                " | " + nombre +
+                " | " + precio +
+                " | " + fechaRegistro +
+                " | " + categoria.getNombre();
     }
 }
